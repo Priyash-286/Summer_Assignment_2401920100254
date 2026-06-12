@@ -1,0 +1,21 @@
+class Solution {
+    public int compress(char[] chars) {
+        int i = 0;
+        int write = 0;
+        while (i < chars.length) {
+            int j = i;
+            while (j < chars.length && chars[j] == chars[i]) {
+                j++;
+            }
+            int freq = j - i;
+            chars[write++] = chars[i];
+            if (freq > 1) {
+                String count = String.valueOf(freq);
+                for (char c : count.toCharArray()) {
+                    chars[write++] = c;
+                }
+            }
+            i = j;
+        }return write;
+    }
+}
